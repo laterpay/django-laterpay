@@ -1,17 +1,17 @@
-laterpay-client-python
+django-laterpay
 ======================
 
-.. image:: https://badge.fury.io/py/laterpay-client.png
-    :target: http://badge.fury.io/py/laterpay-client
+.. image:: https://badge.fury.io/py/django-laterpay.png
+    :target: http://badge.fury.io/py/django-laterpay
 
-.. image:: https://travis-ci.org/laterpay/laterpay-client-python.png?branch=develop
-    :target: https://travis-ci.org/laterpay/laterpay-client-python
+.. image:: https://travis-ci.org/laterpay/django-laterpay.png?branch=develop
+    :target: https://travis-ci.org/laterpay/django-laterpay
 
-.. image:: https://coveralls.io/repos/laterpay/laterpay-client-python/badge.png?branch=develop
-    :target: https://coveralls.io/r/laterpay/laterpay-client-python
+.. image:: https://coveralls.io/repos/laterpay/django-laterpay/badge.png?branch=develop
+    :target: https://coveralls.io/r/laterpay/django-laterpay
 
-.. image:: https://pypip.in/d/laterpay-client/badge.png
-    :target: https://crate.io/packages/laterpay-client?version=latest
+.. image:: https://pypip.in/d/django-laterpay/badge.png
+    :target: https://crate.io/packages/django-laterpay?version=latest
 
 
 `LaterPay <http://www.laterpay.net/>`__ Python client
@@ -21,7 +21,7 @@ Installation
 
 ::
 
-    $ pip install laterpay-client
+    $ pip install django-laterpay
 
 Usage
 -----
@@ -31,6 +31,6 @@ See https://www.laterpay.net/developers/docs
 Development
 -----------
 
-See https://github.com/laterpay/laterpay-client-python
+See https://github.com/laterpay/django-laterpay
 
-`Tested by Travis <https://travis-ci.org/laterpay/laterpay-client-python>`__
+`Tested by Travis <https://travis-ci.org/laterpay/django-laterpay>`__
