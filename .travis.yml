@@ -11,6 +11,6 @@ script:
   - tox -e $TOX_ENV
 matrix:
   fast_finish: true
-  allowed_failures:
+  allow_failures:
     - env: TOX_ENV=py33
     - env: TOX_ENV=py34
