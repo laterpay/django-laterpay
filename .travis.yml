@@ -12,5 +12,5 @@ script:
 matrix:
   fast_finish: true
   allowed_failures:
-    - python: 3.3
-    - python: 3.4
+    - env: TOX_ENV=py33
+    - env: TOX_ENV=py34
