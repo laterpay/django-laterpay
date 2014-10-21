@@ -20,7 +20,7 @@ setup(
     long_description=_long_description,
     author="LaterPay GmbH",
     author_email="support@laterpay.net",
-    url="https://github.com/laterpay/laterpay-client-python",
+    url="https://github.com/laterpay/django-laterpay",
     license='MIT',
     keywords="LaterPay API client Django",
 
