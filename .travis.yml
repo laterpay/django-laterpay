@@ -10,3 +10,7 @@ script:
   - coverage run --source=djlaterpay setup.py test
 after_success:
   coveralls
+matrix:
+  allow_failures:
+    - python: 3.3
+    - python: 3.4
