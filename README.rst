@@ -14,7 +14,7 @@ django-laterpay
     :target: https://crate.io/packages/django-laterpay?version=latest
 
 
-`LaterPay <http://www.laterpay.net/>`__ Python client
+`LaterPay <http://www.laterpay.net/>`__ Django utilities
 
 Installation
 ------------
