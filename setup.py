@@ -29,6 +29,11 @@ setup(
     packages=_packages,
     package_data={'djlaterpay': ['templates/laterpay/inclusion/*']},
 
+    install_requires=(
+        'laterpay-client==3.0.0',
+        'Django<1.7',
+    ),
+
     classifiers=(
         "Development Status :: 5 - Production/Stable",
         "Intended Audience :: Developers",
