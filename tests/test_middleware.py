@@ -19,12 +19,6 @@ from laterpay import signing
 from djlaterpay.middleware import LPTokenMiddleware
 
 
-class RequestMock:
-
-    def __init__(self, path):
-        self.path = path
-
-
 class MiddlewareTest(unittest.TestCase):
 
     def setUp(self):
@@ -35,7 +29,7 @@ class MiddlewareTest(unittest.TestCase):
         LPTokenMiddleware.add_exempt_paths(*paths)
 
         for path in paths:
-            request = RequestMock(path)
+            request = self.request_factory.get(path)
             m = LPTokenMiddleware()
             self.assertEqual(m.process_request(request), None)
 
