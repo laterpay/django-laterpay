@@ -1,5 +1,8 @@
 from django.conf import settings
 from django.http import HttpResponseRedirect
+
+from laterpay import signing
+
 from djlaterpay import get_laterpay_client
 
 
@@ -26,12 +29,13 @@ class LPTokenMiddleware(object):
         if request.path in self.exempt_paths:
             return
 
-        lptoken = request.GET.get('lptoken', None)
+        verified_lptoken = None
+        lptoken_param = request.GET.get('lptoken', None)
 
-        if lptoken is None:
+        if lptoken_param is None:
             if LPTOKEN_COOKIENAME in request.COOKIES:
                 # we have a token already, carry on
-                lptoken = request.COOKIES[LPTOKEN_COOKIENAME]
+                verified_lptoken = request.COOKIES[LPTOKEN_COOKIENAME]
             else:
                 # we don't have a cookie, so we need to go to /identify to get one
                 # first figure out where we are, so we can get back
@@ -43,8 +47,31 @@ class LPTokenMiddleware(object):
                 else:
                     # for now, just carry on without a token
                     pass
+        else:
+            # Validate lptoken's signature.
+            url = request.build_absolute_uri().split('?')[0]
+            signature = request.GET.get('hmac')
+            timestamp = request.GET.get('ts')
 
-        request.laterpay = get_laterpay_client(lptoken)
+            if None not in (signature, timestamp):
+
+                data = {
+                    'lptoken': lptoken_param,
+                    'ts': timestamp,
+                }
+
+                verified = signing.verify(
+                    signature=signature,
+                    secret=settings.LP_SECRET,
+                    params=data,
+                    url=url,
+                    method=request.method,
+                )
+
+                if verified:
+                    verified_lptoken = lptoken_param
+
+        request.laterpay = get_laterpay_client(verified_lptoken)
 
     def process_response(self, request, response):
         """
