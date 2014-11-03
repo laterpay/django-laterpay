@@ -1,5 +1,12 @@
 import re
 from django.template import Library
+import warnings
+
+warnings.warn("""djlaterpay.templatetags.laterpay is deprecated; it is
+undocumented and, to the best of our knowledge, unused outside of some (also
+deprecated) internal cases. If you _are_ using it, please contact us via
+https://github.com/laterpay/django-laterpay - otherwise, it will be removed in
+the next major release.""", DeprecationWarning)
 
 register = Library()
 
