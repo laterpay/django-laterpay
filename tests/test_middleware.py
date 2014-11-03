@@ -53,6 +53,20 @@ class MiddlewareTest(unittest.TestCase):
         })
         self.assertEqual(request.laterpay.lptoken, None)
 
+    def test_lptoken_validation_wrong_signature(self):
+        params = {
+            'lptoken': 'tokentoken',
+            'ts': '141500500',
+        }
+        signature = 'wrong'
+
+        data = params.copy()
+        data['hmac'] = signature
+
+        request = self._test_lptoken_validation(data)
+
+        self.assertEqual(request.laterpay.lptoken, None)
+
     def test_lptoken_validation_ok(self):
         params = {
             'lptoken': 'tokentoken',
