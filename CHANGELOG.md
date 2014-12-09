@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+* Support and testing for all supported Django versions (1.6 as originally, plus 1.4 and 1.7)
+
 ## 1.1.0
 
 * Bumped [laterpay-client](https://github.com/laterpay/laterpay-client-python) dependency to 3.1.0
