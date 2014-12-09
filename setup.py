@@ -31,7 +31,7 @@ setup(
 
     install_requires=(
         'laterpay-client==3.1.0',
-        'Django<1.7',
+        'Django',
     ),
 
     classifiers=(
