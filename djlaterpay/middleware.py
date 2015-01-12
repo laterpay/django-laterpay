@@ -1,9 +1,14 @@
+import logging
+
 from django.conf import settings
 from django.http import HttpResponseRedirect
 
 from laterpay import signing
 
 from djlaterpay import get_laterpay_client
+
+
+_logger = logging.getLogger(__name__)
 
 
 LPTOKEN_COOKIENAME = getattr(settings, 'LPTOKEN_COOKIENAME', '__lptoken')
@@ -31,6 +36,7 @@ class LPTokenMiddleware(object):
 
         verified_lptoken = None
         lptoken_param = request.GET.get('lptoken', None)
+        absolute_url = request.build_absolute_uri()
 
         if lptoken_param is None:
             if LPTOKEN_COOKIENAME in request.COOKIES:
@@ -49,12 +55,16 @@ class LPTokenMiddleware(object):
                     pass
         else:
             # Validate lptoken's signature.
-            url = request.build_absolute_uri().split('?')[0]
+            base_url = absolute_url.split('?')[0]
             signature = request.GET.get('hmac')
             timestamp = request.GET.get('ts')
 
-            if None not in (signature, timestamp):
-
+            if None in (signature, timestamp):
+                _logger.warning(
+                    'Received lptoken without signature and/or timestamp: %s',
+                    absolute_url,
+                )
+            else:
                 data = {
                     'lptoken': lptoken_param,
                     'ts': timestamp,
@@ -64,12 +74,24 @@ class LPTokenMiddleware(object):
                     signature=signature,
                     secret=settings.LP_SECRET,
                     params=data,
-                    url=url,
+                    url=base_url,
                     method=request.method,
                 )
 
                 if verified:
                     verified_lptoken = lptoken_param
+                else:
+                    _logger.warning(
+                        'Received lptoken with invalid signature: %s',
+                        absolute_url,
+                    )
+
+        if verified_lptoken is None:
+            _logger.info(
+                'Setting ``request.laterpay.lptoken`` to ``None`` for %s %s',
+                request.method,
+                absolute_url,
+            )
 
         request.laterpay = get_laterpay_client(verified_lptoken)
 
