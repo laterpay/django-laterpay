@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+Nothing yet.
+
+## 1.2.0
+
 * Support and testing for all supported Django versions (1.6 as originally, plus 1.4 and 1.7 and 1.8)
 * Added [logging to LPTokenMiddleware](https://github.com/laterpay/django-laterpay/pull/12)
 * Bumped [laterpay-client](https://github.com/laterpay/laterpay-client-python) dependency to 3.2.1
