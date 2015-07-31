@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-* Support and testing for all supported Django versions (1.6 as originally, plus 1.4 and 1.7)
+* Support and testing for all supported Django versions (1.6 as originally, plus 1.4 and 1.7 and 1.8)
 
 ## 1.1.0
 
