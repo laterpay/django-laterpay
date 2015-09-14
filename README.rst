@@ -10,9 +10,6 @@ django-laterpay
 .. image:: https://coveralls.io/repos/laterpay/django-laterpay/badge.png?branch=develop
     :target: https://coveralls.io/r/laterpay/django-laterpay
 
-.. image:: https://pypip.in/d/django-laterpay/badge.png
-    :target: https://crate.io/packages/django-laterpay?version=latest
-
 
 `LaterPay <http://www.laterpay.net/>`__ Django utilities
 
