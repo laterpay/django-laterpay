@@ -1,7 +1,7 @@
 language: python
 sudo: false
 install:
-  - pip install tox
+  - pip install tox==2.1.1
 env:
   - TOX_ENV=python27-django14
   - TOX_ENV=python27-django16
