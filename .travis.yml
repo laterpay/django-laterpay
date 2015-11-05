@@ -3,19 +3,32 @@ sudo: false
 install:
   - pip install tox==2.1.1
 env:
-  - TOX_ENV=python27-django14
-  - TOX_ENV=python27-django16
-  - TOX_ENV=python27-django17
-  - TOX_ENV=python27-django18
-  - TOX_ENV=python27-djangodev
-  - TOX_ENV=python33-django16
-  - TOX_ENV=python33-django17
-  - TOX_ENV=python33-django18
-  - TOX_ENV=python33-djangodev
-  - TOX_ENV=python34-django16
-  - TOX_ENV=python34-django17
-  - TOX_ENV=python34-django18
-  - TOX_ENV=python34-djangodev
+  - TOX_ENV=python27-django14-lpclient32
+  - TOX_ENV=python27-django14-lpclient40
+  - TOX_ENV=python27-django16-lpclient32
+  - TOX_ENV=python27-django16-lpclient40
+  - TOX_ENV=python27-django17-lpclient32
+  - TOX_ENV=python27-django17-lpclient40
+  - TOX_ENV=python27-django18-lpclient32
+  - TOX_ENV=python27-django18-lpclient40
+  - TOX_ENV=python27-djangodev-lpclient32
+  - TOX_ENV=python27-djangodev-lpclient40
+  - TOX_ENV=python33-django16-lpclient32
+  - TOX_ENV=python33-django16-lpclient40
+  - TOX_ENV=python33-django17-lpclient32
+  - TOX_ENV=python33-django17-lpclient40
+  - TOX_ENV=python33-django18-lpclient32
+  - TOX_ENV=python33-django18-lpclient40
+  - TOX_ENV=python33-djangodev-lpclient32
+  - TOX_ENV=python33-djangodev-lpclient40
+  - TOX_ENV=python34-django16-lpclient32
+  - TOX_ENV=python34-django16-lpclient40
+  - TOX_ENV=python34-django17-lpclient32
+  - TOX_ENV=python34-django17-lpclient40
+  - TOX_ENV=python34-django18-lpclient32
+  - TOX_ENV=python34-django18-lpclient40
+  - TOX_ENV=python34-djangodev-lpclient32
+  - TOX_ENV=python34-djangodev-lpclient40
   - TOX_ENV=cov
   - TOX_ENV=flake8
 script:
@@ -23,6 +36,9 @@ script:
 matrix:
   fast_finish: true
   allow_failures:
-    - env: TOX_ENV=python27-djangodev
-    - env: TOX_ENV=python33-djangodev
-    - env: TOX_ENV=python34-djangodev
+    - env: TOX_ENV=python27-djangodev-lpclient32
+    - env: TOX_ENV=python27-djangodev-lpclient40
+    - env: TOX_ENV=python33-djangodev-lpclient32
+    - env: TOX_ENV=python33-djangodev-lpclient40
+    - env: TOX_ENV=python34-djangodev-lpclient32
+    - env: TOX_ENV=python34-djangodev-lpclient40
