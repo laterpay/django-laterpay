@@ -2,10 +2,6 @@
 
 ## Unreleased
 
-* Removed crate.io badge.
-* Switched to containers build on TravisCI.
-* Fixed running Travis jobs with tox 2.0.
-* Upgraded and pinned test dependencies.
 * Loosened version requirement for `laterpay-client` (so it could use v4.0.0 and higher).
 
 ## 1.2.0
