@@ -4,7 +4,7 @@ from setuptools import find_packages, setup
 import codecs
 import os
 
-_version = "1.2.0"
+_version = "1.3.0"
 _packages = find_packages('.', exclude=["*.tests", "*.tests.*", "tests.*", "tests"])
 
 if os.path.exists('README.rst'):
@@ -30,7 +30,7 @@ setup(
     package_data={'djlaterpay': ['templates/laterpay/inclusion/*']},
 
     install_requires=(
-        'laterpay-client==3.2.1',
+        'laterpay-client>=3.2.1',
         'Django',
     ),
 

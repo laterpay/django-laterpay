@@ -1,27 +1,6 @@
 language: python
+sudo: false
 install:
-  - pip install tox
-env:
-  - TOX_ENV=python27-django14
-  - TOX_ENV=python27-django16
-  - TOX_ENV=python27-django17
-  - TOX_ENV=python27-django18
-  - TOX_ENV=python27-djangodev
-  - TOX_ENV=python33-django16
-  - TOX_ENV=python33-django17
-  - TOX_ENV=python33-django18
-  - TOX_ENV=python33-djangodev
-  - TOX_ENV=python34-django16
-  - TOX_ENV=python34-django17
-  - TOX_ENV=python34-django18
-  - TOX_ENV=python34-djangodev
-  - TOX_ENV=cov
-  - TOX_ENV=flake8
+  - pip install tox==2.1.1
 script:
-  - tox -e $TOX_ENV
-matrix:
-  fast_finish: true
-  allow_failures:
-    - env: TOX_ENV=python27-djangodev
-    - env: TOX_ENV=python33-djangodev
-    - env: TOX_ENV=python34-djangodev
+  - tox
