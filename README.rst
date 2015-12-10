@@ -39,7 +39,7 @@ This repository uses `GitHub flow <https://guides.github.com/introduction/flow/i
 In order to release a new version please follow these steps:
 
 * Ensure ``CHANGELOG`` is representative
-* Determine next version number from the ``CHANGELOG`` (ensuring we follow `SemVer<http://semver.org/>`__)
+* Determine next version number from the ``CHANGELOG`` (ensuring we follow `SemVer <http://semver.org/>`__)
 * Update the ``CHANGELOG`` with the new version
 * Update the version in ``setup.py``
 * Tag the commit with current version number
