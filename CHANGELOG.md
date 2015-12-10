@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-Nothing yet.
+* Loosened version requirement for `laterpay-client` (so it could use v4.0.0 and higher).
 
 ## 1.2.0
 
