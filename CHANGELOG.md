@@ -1,8 +1,12 @@
 # Changelog
 
-## Unreleased
+## 2.0.0 (under development)
 
-* Nothing yet
+* Added full support for Django 1.8, 1.9 and 1.10
+* Requires Python 2.7 or Python 3.4+
+* Removed official support for Django before 1.8
+* Removed official support for Python 3.3
+* Removed official support for laterpay-client before 4.1
 
 ## 1.3.0
 
