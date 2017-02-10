@@ -27,7 +27,6 @@ setup(
     test_suite="tests",
 
     packages=_packages,
-    package_data={'djlaterpay': ['templates/laterpay/inclusion/*']},
 
     install_requires=(
         'laterpay-client>=4.1',

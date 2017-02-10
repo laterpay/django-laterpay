@@ -7,6 +7,8 @@
 * Removed official support for Django before 1.8
 * Removed official support for Python 3.3
 * Removed official support for laterpay-client before 4.1
+* Removed deprecated template tags `render_laterpay_header`, `render_laterpay_footer`, `laterpay_subscribe`, and `laterpay_buy` from `djlaterpay`
+* Removed now unused template tags template files `laterpay/inclusion/render_footer.html` and `laterpay/inclusion/render_header.html`
 
 ## 1.3.0
 
