@@ -1,8 +1,24 @@
 language: python
 python:
-    - "3.5"
+  - 2.7
+  - 3.4
+  - 3.5
+env:
+  - DJANGO=18
+  - DJANGO=19
+  - DJANGO=110
+  - DJANGO=111
+  - DJANGO=master
 sudo: false
 install:
   - pip install tox
 script:
-  - tox
+  - tox -e py${TRAVIS_PYTHON_VERSION//./}-dj${DJANGO}-lpclient4
+  - tox -e py${TRAVIS_PYTHON_VERSION//./}-dj${DJANGO}-lpclient5
+matrix:
+  fast_finish: true
+  exclude:
+    - python: 2.7
+      env: DJANGO=master
+    - python: 3.4
+      env: DJANGO=master
