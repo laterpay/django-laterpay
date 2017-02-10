@@ -7,6 +7,12 @@ from laterpay import signing
 
 from djlaterpay import get_laterpay_client
 
+try:
+    from django.utils.deprecation import MiddlewareMixin
+except ImportError:
+    # TODO Remove when dropping Django 1.8
+    MiddlewareMixin = object
+
 
 _logger = logging.getLogger(__name__)
 
@@ -14,7 +20,7 @@ _logger = logging.getLogger(__name__)
 LPTOKEN_COOKIENAME = getattr(settings, 'LPTOKEN_COOKIENAME', '__lptoken')
 
 
-class LPTokenMiddleware(object):
+class LPTokenMiddleware(MiddlewareMixin):
 
     exempt_paths = []
 
