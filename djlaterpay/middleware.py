@@ -56,9 +56,7 @@ class LPTokenMiddleware(MiddlewareMixin):
                     return HttpResponseRedirect(
                         get_laterpay_client(None).get_gettoken_redirect(return_to=here)
                     )
-                else:
-                    # for now, just carry on without a token
-                    pass
+                # Don't do anything on POST and such
         else:
             # Validate lptoken's signature.
             base_url = absolute_url.split('?')[0]
