@@ -4,7 +4,7 @@ from setuptools import find_packages, setup
 import codecs
 import os
 
-_version = "2.0.0a1"
+_version = "2.0.0"
 _packages = find_packages('.', exclude=["*.tests", "*.tests.*", "tests.*", "tests"])
 
 if os.path.exists('README.rst'):
@@ -34,8 +34,8 @@ setup(
     ),
 
     classifiers=(
-        "Development Status :: 3 - Alpha",
-        # "Development Status :: 5 - Production/Stable",
+        # "Development Status :: 3 - Alpha",
+        "Development Status :: 5 - Production/Stable",
         "Environment :: Web Environment",
         "Framework :: Django :: 1.8",
         "Framework :: Django :: 1.9",

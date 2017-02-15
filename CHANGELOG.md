@@ -1,6 +1,6 @@
 # Changelog
 
-## 2.0.0 (under development)
+## 2.0.0
 
 * Added full support for Django 1.8, 1.9 and 1.10
 * Requires Python 2.7 or Python 3.4+
