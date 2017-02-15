@@ -12,11 +12,13 @@ settings.configure(
     LP_API_ROOT='https://web.sandbox.laterpaytest.net',
 )
 
+from django.http import HttpResponse
 from django.test import RequestFactory, SimpleTestCase
 from django.utils import six
 
 from laterpay import signing
 
+from djlaterpay import get_laterpay_client
 from djlaterpay.middleware import LPTokenMiddleware
 
 
@@ -52,6 +54,7 @@ class MiddlewareTest(SimpleTestCase):
         redirect_location = response['Location']
         query = six.moves.urllib.parse.urlparse(redirect_location).query
         params = six.moves.urllib.parse.parse_qs(query)
+        self.assertEqual(params['redir'], ['http://testserver/end'])
         verified = signing.verify(
             signature=params['hmac'],
             secret=settings.LP_SECRET,
@@ -115,3 +118,42 @@ class MiddlewareTest(SimpleTestCase):
         request, response = self._test_lptoken_validation(data)
 
         self.assertEqual(request.laterpay.lptoken, 'tokentoken')
+
+    def test_response_exempt(self):
+        request = self.request_factory.get('/')
+        response = HttpResponse()
+        middleware = LPTokenMiddleware()
+
+        response = middleware.process_response(request, response)
+        self.assertFalse(hasattr(response, 'laterpay'))
+
+    def test_response_set_cookie(self):
+        request = self.request_factory.get('/')
+        request.laterpay = get_laterpay_client('tokentoken')
+        response = HttpResponse()
+        middleware = LPTokenMiddleware()
+
+        response = middleware.process_response(request, response)
+        self.assertEqual(response.cookies['__lptoken'].value, 'tokentoken')
+
+    def test_response_delete_cookie(self):
+        request = self.request_factory.get('/end')
+        request.laterpay = get_laterpay_client(None)
+        response = HttpResponse()
+        response.set_cookie('__lptoken', 'tokentoken')
+        middleware = LPTokenMiddleware()
+
+        redirect_response = middleware.process_response(request, response)
+        self.assertEqual(response.cookies['__lptoken'].value, '')
+        redirect_location = redirect_response['Location']
+        query = six.moves.urllib.parse.urlparse(redirect_location).query
+        params = six.moves.urllib.parse.parse_qs(query)
+        self.assertEqual(params['redir'], ['http://testserver/end'])
+        verified = signing.verify(
+            signature=params['hmac'],
+            secret=settings.LP_SECRET,
+            params=params,
+            url=settings.LP_API_ROOT + '/gettoken',
+            method='GET',
+        )
+        self.assertTrue(verified)
