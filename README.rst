@@ -4,10 +4,10 @@ django-laterpay
 .. image:: https://badge.fury.io/py/django-laterpay.png
     :target: http://badge.fury.io/py/django-laterpay
 
-.. image:: https://travis-ci.org/laterpay/django-laterpay.png?branch=develop
+.. image:: https://travis-ci.org/laterpay/django-laterpay.png?branch=master
     :target: https://travis-ci.org/laterpay/django-laterpay
 
-.. image:: https://coveralls.io/repos/laterpay/django-laterpay/badge.png?branch=develop
+.. image:: https://coveralls.io/repos/laterpay/django-laterpay/badge.png?branch=master
     :target: https://coveralls.io/r/laterpay/django-laterpay
 
 

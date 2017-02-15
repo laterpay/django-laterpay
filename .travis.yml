@@ -4,21 +4,31 @@ python:
   - 3.4
   - 3.5
 env:
-  - DJANGO=18
-  - DJANGO=19
-  - DJANGO=110
-  - DJANGO=111
-  - DJANGO=master
+  # Disabled some combinations because running them isn't really necessary.
+  # LPCLIENT is unrelated to the Django version.
+  # If django-laterpay works with all specified Django versions and all
+  # specified laterpay-client-python versions, all is good.
+  - DJANGO=18 LPCLIENT=4
+  # - DJANGO=18 LPCLIENT=5
+  # - DJANGO=19 LPCLIENT=4
+  - DJANGO=19 LPCLIENT=5
+  - DJANGO=110 LPCLIENT=4
+  # - DJANGO=110 LPCLIENT=5
+  # - DJANGO=111 LPCLIENT=4
+  - DJANGO=111 LPCLIENT=5
+  # Let's eventually deprecate laterpay-client-python 4.x
+  # - DJANGO=master LPCLIENT=4
+  - DJANGO=master LPCLIENT=5
 sudo: false
 install:
-  - pip install tox
+  - pip install tox coveralls
 script:
-  - tox -e py${TRAVIS_PYTHON_VERSION//./}-dj${DJANGO}-lpclient4
-  - tox -e py${TRAVIS_PYTHON_VERSION//./}-dj${DJANGO}-lpclient5
+  - tox -e py${TRAVIS_PYTHON_VERSION//./}-dj${DJANGO}-lpclient${LPCLIENT}
+  - coveralls
 matrix:
   fast_finish: true
   exclude:
     - python: 2.7
-      env: DJANGO=master
+      env: DJANGO=master LPCLIENT=5
     - python: 3.4
-      env: DJANGO=master
+      env: DJANGO=master LPCLIENT=5
