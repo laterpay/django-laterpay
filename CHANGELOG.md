@@ -2,6 +2,8 @@
 
 ## 3.0.0 (under development)
 
+* Tested for full support of Django 1.11 and 2.0
+
 ## 2.0.0
 
 * Added full support for Django 1.8, 1.9 and 1.10

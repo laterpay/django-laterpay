@@ -1,34 +1,38 @@
-language: python
-python:
-  - 2.7
-  - 3.4
-  - 3.5
-env:
-  # Disabled some combinations because running them isn't really necessary.
-  # LPCLIENT is unrelated to the Django version.
-  # If django-laterpay works with all specified Django versions and all
-  # specified laterpay-client-python versions, all is good.
-  - DJANGO=18 LPCLIENT=4
-  # - DJANGO=18 LPCLIENT=5
-  # - DJANGO=19 LPCLIENT=4
-  - DJANGO=19 LPCLIENT=5
-  - DJANGO=110 LPCLIENT=4
-  # - DJANGO=110 LPCLIENT=5
-  # - DJANGO=111 LPCLIENT=4
-  - DJANGO=111 LPCLIENT=5
-  # Let's eventually deprecate laterpay-client-python 4.x
-  # - DJANGO=master LPCLIENT=4
-  - DJANGO=master LPCLIENT=5
 sudo: false
+language: python
 install:
-  - pip install tox coveralls
+  - pip install -U pip tox coveralls
 script:
-  - tox -e py${TRAVIS_PYTHON_VERSION//./}-dj${DJANGO}-lpclient${LPCLIENT}
+  - tox
   - coveralls
 matrix:
-  fast_finish: true
-  exclude:
+matrix:
+  allow_failures:
+    - env: TOXENV=py35-djmaster-lpclient4
+    - env: TOXENV=py35-djmaster-lpclient5
+
+    - env: TOXENV=py36-djmaster-lpclient4
+    - env: TOXENV=py36-djmaster-lpclient5
+
+  include:
     - python: 2.7
-      env: DJANGO=master LPCLIENT=5
+      env: TOXENV=py27-dj18-lpclient4
+    - python: 2.7
+      env: TOXENV=py27-dj18-lpclient5
+
     - python: 3.4
-      env: DJANGO=master LPCLIENT=5
+      env: TOXENV=py34-dj19-lpclient5
+
+    - python: 3.5
+      env: TOXENV=py35-dj110-lpclient4
+    - python: 3.5
+      env: TOXENV=py35-dj111-lpclient5
+    - python: 3.5
+      env: TOXENV=py35-dj20-lpclient5
+    - python: 3.5
+      env: TOXENV=py35-djmaster-lpclient5
+
+    - python: 3.6
+      env: TOXENV=py36-dj20-lpclient5
+    - python: 3.6
+      env: TOXENV=py36-djmaster-lpclient5
